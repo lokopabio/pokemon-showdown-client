@@ -1577,11 +1577,26 @@ export class BattleTooltips {
 		if (move.id === 'multiattack' && item.onMemory) {
 			if (value.itemModify(0)) moveType = item.onMemory;
 		}
-		if (move.id === 'judgment' && item.onPlate && !item.zMoveType) {
-			if (value.itemModify(0)) moveType = item.onPlate;
+		if (move.id === 'judgment') {
+			if (value.tryAbility('Final Verdict')) {
+				moveType = 'Electric';
+			} else if (item.onPlate && !item.zMoveType) {
+				if (value.itemModify(0)) moveType = item.onPlate;
+			}
 		}
-		if (move.id === 'technoblast' && item.onDrive) {
-			if (value.itemModify(0)) moveType = item.onDrive;
+		if (move.id === 'technoblast') {
+			if (toID(pokemon.getSpeciesForme()) === 'oscobainmega') {
+				const slot = serverPokemon.moves.findIndex(
+					moveName => toID(moveName) === 'technoblast'
+				);
+				const types: Dex.TypeName[] = ['Fire', 'Ice', 'Water', 'Electric'];
+
+				if (slot >= 0 && slot < 4) {
+					moveType = types[slot];
+				}
+			} else if (item.onDrive) {
+				if (value.itemModify(0)) moveType = item.onDrive;
+			}
 		}
 		if (move.id === 'naturalgift' && item.naturalGift) {
 			if (value.itemModify(0)) moveType = item.naturalGift.type;
@@ -2105,6 +2120,12 @@ export class BattleTooltips {
 		if (!value.value) return value;
 
 		// Other ability boosts
+		if (move.id === 'hornattack') {
+			value.abilityModify(2, "Tough Horns");
+		}
+		if (['megahorn', 'hornleech', 'smartstrike'].includes(move.id)) {
+			value.abilityModify(1.3, "Tough Horns");
+		}
 		if (pokemon.status === 'brn' && move.category === 'Special') {
 			value.abilityModify(1.5, "Flare Boost");
 		}
