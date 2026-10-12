@@ -28,27 +28,27 @@ function requireScript(url) {
 	document.head.appendChild(scriptEl);
 }
 
-linkStyle('https://play.pokemonshowdown.com/style/font-awesome.css?');
-linkStyle('https://play.pokemonshowdown.com/style/battle.css?a7');
-linkStyle('https://play.pokemonshowdown.com/style/replay.css?a7');
-linkStyle('https://play.pokemonshowdown.com/style/utilichart.css?a7');
+linkStyle('https://play.suajserver.xyz/style/font-awesome.css?suaj1');
+linkStyle('https://play.suajserver.xyz/style/battle.css?suaj1');
+linkStyle('https://play.suajserver.xyz/style/replay.css?suaj1');
+linkStyle('https://play.suajserver.xyz/style/utilichart.css?suaj1');
 
-requireScript('https://play.pokemonshowdown.com/js/lib/ps-polyfill.js');
-requireScript('https://play.pokemonshowdown.com/config/config.js?a7');
-requireScript('https://play.pokemonshowdown.com/js/lib/jquery-1.11.0.min.js');
-requireScript('https://play.pokemonshowdown.com/js/lib/html-sanitizer-minified.js');
-requireScript('https://play.pokemonshowdown.com/js/battle-sound.js');
-requireScript('https://play.pokemonshowdown.com/js/battledata.js?a7');
+requireScript('https://play.suajserver.xyz/js/lib/ps-polyfill.js?suaj1');
+requireScript('https://play.suajserver.xyz/config/config.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/lib/jquery-1.11.0.min.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/lib/html-sanitizer-minified.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/battle-sound.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/battledata.js?suaj1');
 requireScript('https://play.pokemonshowdown.com/data/pokedex-mini.js?a7');
 requireScript('https://play.pokemonshowdown.com/data/pokedex-mini-bw.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/graphics.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/pokedex.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/moves.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/abilities.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/items.js?a7');
-requireScript('https://play.pokemonshowdown.com/data/teambuilder-tables.js?a7');
-requireScript('https://play.pokemonshowdown.com/js/battle-tooltips.js?a7');
-requireScript('https://play.pokemonshowdown.com/js/battle.js?a7');
+requireScript('https://play.suajserver.xyz/data/graphics.js?suaj1');
+requireScript('https://play.suajserver.xyz/data/pokedex.js?suaj1');
+requireScript('https://play.suajserver.xyz/data/moves.js?suaj1');
+requireScript('https://play.suajserver.xyz/data/abilities.js?suaj1');
+requireScript('https://play.suajserver.xyz/data/items.js?suaj1');
+requireScript('https://play.suajserver.xyz/data/teambuilder-tables.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/battle-tooltips.js?suaj1');
+requireScript('https://play.suajserver.xyz/js/battle.js?suaj1');
 
 var Replays = {
 	battle: null,
