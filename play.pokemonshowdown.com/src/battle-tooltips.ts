@@ -1835,6 +1835,14 @@ export class BattleTooltips {
 			value.abilityModify(1.3, "Compound Eyes");
 		}
 
+		if (value.tryAbility('Mind\'s Eye')) {
+			accuracyModifiers.push(4915);
+			value.abilityModify(1.2, "Mind's Eye");
+		} else if (value.tryAbility('Super Sallon')) {
+			accuracyModifiers.push(4915);
+			value.abilityModify(1.2, "Super Sallon");
+		}
+
 		if (value.tryItem('Wide Lens')) {
 			accuracyModifiers.push(4505);
 			value.itemModify(1.1, "Wide Lens");
