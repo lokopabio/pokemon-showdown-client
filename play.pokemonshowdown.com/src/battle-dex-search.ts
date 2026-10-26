@@ -1358,6 +1358,7 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		} else if (this.dex.gen < 9) {
 			table = table[`gen${this.dex.gen}`];
 		}
+
 		if (!table.itemSet) {
 			table.itemSet = table.items.map((r: any) => {
 				if (typeof r === 'string') {
@@ -1367,6 +1368,119 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			});
 			table.items = null;
 		}
+
+		if (this.dex.gen === 7) {
+			const extraItems = [
+				'blunderpolicy',
+				'punchingglove',
+				'throatspray',
+				'roomservice',
+				'ejectpack',
+				'covertcloak',
+				'mirrorherb',
+				'loadeddice',
+				'clearamulet',
+				'carlisite',
+				'dijeyepite',
+				'mijuejite',
+				'oruguillitex',
+				'momontanhite',
+				'papalvite',
+				'habiemiguitex',
+				'habiemiguitey',
+				'albeertite',
+				'vtrollite',
+				'ponsheadite',
+				'chemousite',
+				'superstebanite',
+				'fidalsanite',
+				'fidbuelunite',
+				'oscobainite',
+				'mermelite',
+			];
+
+			const existingItems = new Set(
+				table.itemSet
+					.filter((row: SearchRow) => row[0] === 'item')
+					.map((row: SearchRow) => row[1])
+			);
+
+			const additions: SearchRow[] = extraItems
+				.filter(id => !existingItems.has(id))
+				.map(id => ['item', id as ID]);
+
+			return [...table.itemSet, ...additions];
+		}
+
+		if (this.dex.gen === 8) {
+			const customMegaStones = [
+				'carlisite',
+				'dijeyepite',
+				'mijuejite',
+				'oruguillitex',
+				'momontanhite',
+				'papalvite',
+				'habiemiguitex',
+				'habiemiguitey',
+				'albeertite',
+				'vtrollite',
+				'ponsheadite',
+				'chemousite',
+				'superstebanite',
+				'fidalsanite',
+				'fidbuelunite',
+				'oscobainite',
+				'mermelite',
+				'aloraichiumz',
+				'buginiumz',
+				'darkiniumz',
+				'decidiumz',
+				'dragoniumz',
+				'eeviumz',
+				'electriumz',
+				'fairiumz',
+				'fightiniumz',
+				'firiumz',
+				'flyiniumz',
+				'ghostiumz',
+				'grassiumz',
+				'groundiumz',
+				'iciumz',
+				'inciniumz',
+				'kommoniumz',
+				'lunaliumz',
+				'lycaniumz',
+				'marshadiumz',
+				'mewniumz',
+				'mimikiumz',
+				'normaliumz',
+				'pikaniumz',
+				'pikashuniumz',
+				'poisoniumz',
+				'primariumz',
+				'psychiumz',
+				'rockiumz',
+				'snorliumz',
+				'solganiumz',
+				'steeliumz',
+				'tapuniumz',
+				'ultranecroziumz',
+				'wateriumz',
+			];
+
+			const existingItems = new Set(
+				table.itemSet
+					.filter((row: SearchRow) => row[0] === 'item')
+					.map((row: SearchRow) => row[1])
+			);
+
+			const additions: SearchRow[] = customMegaStones
+				.filter(id => !existingItems.has(id))
+				.map(id => ['item', id as ID]);
+
+			return [...table.itemSet, ...additions];
+		}
+
 		return table.itemSet;
 	}
 	getBaseResults(): SearchRow[] {
@@ -1758,11 +1872,18 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 					}
 					if (
 						!learnsetEntry.includes(gen) &&
+						!(dex.gen === 8 && !this.formatType?.startsWith('bdsp') &&
+							learnsetEntry.includes('7') && move.gen <= 7) &&
 						(!isTradebacks ? true : !(move.gen <= dex.gen && learnsetEntry.includes(`${dex.gen + 1}`)))
 					) {
 						continue;
 					}
-					if (this.formatType !== 'natdex' && move.isNonstandard === "Past") {
+					if (
+						this.formatType !== 'natdex' &&
+						move.isNonstandard === "Past" &&
+						!(dex.gen === 8 && !this.formatType?.startsWith('bdsp') &&
+							learnsetEntry.includes('7') && move.gen <= 7)
+					) {
 						continue;
 					}
 					if (

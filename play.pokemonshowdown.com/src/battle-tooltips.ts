@@ -1579,7 +1579,15 @@ export class BattleTooltips {
 		}
 		if (move.id === 'judgment') {
 			if (value.tryAbility('Final Verdict')) {
-				moveType = 'Electric';
+				const slot = serverPokemon.moves.findIndex(
+					moveName => toID(moveName) === 'judgment'
+				);
+
+				if (slot >= 0) {
+					moveType = slot < 2 ? 'Electric' : 'Ice';
+				} else if (item.onPlate && !item.zMoveType) {
+					if (value.itemModify(0)) moveType = item.onPlate;
+				}
 			} else if (item.onPlate && !item.zMoveType) {
 				if (value.itemModify(0)) moveType = item.onPlate;
 			}
